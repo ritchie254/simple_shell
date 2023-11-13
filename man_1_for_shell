@@ -1,0 +1,92 @@
+.SH NAME
+shell - a command interpreter
+
+.SH SYNOPSIS
+.B shell [command][arguments]...
+
+.SH DESCRIPTION
+.PP
+Shell is the standard command interpreter for the system. This man page is not intended to be a tutorial or a
+     complete specification of the shell.
+
+.SS OVERVIEW
+.PP
+The shell is a command that reads lines from either a file or the termi‐
+nal, interprets them, and generally executes other commands.  It is the
+program that is running when a user logs into the system (although a user
+can select a different shell with the chsh(1) command). The shell is a command that reads lines from either a file or the termi‐
+nal, interprets them, and generally executes other commands.  It is the
+program that is running when a user logs into the system (although a user
+can select a different shell with the chsh(1) command). .PP
+
+.SS Invocations
+.PP
+If command line arguments besides the options have been specified, then
+the shell treats the first argument as the name of a file from which to
+read commands (a shell script), and the remaining arguments are set as
+the positional parameters of the shell ($1, $2, etc).  Otherwise, the
+shell reads commands from its standard input.
+
+
+.SH Examples
+.RS
+
+.SS No interactive
+
+.BI input:
+
+$ echo "qwerty" | ./a.out
+
+.BI Output:
+
+error: No such file or directory
+
+.BI input:
+
+echo "ls -l" | ./a.out
+
+.BI output:
+
+total 64
+
+-rw-r--r-- 1 root root  1637 Nov  2 07:18 alx.h
+-rw-r--r-- 1 root root  1272 Nov  2 07:17 built-in.c
+-rw-r--r-- 1 root root   454 Nov  2 07:19 command_input.c
+-rw-r--r-- 1 root root  3237 Nov  2 06:51 core_functions.c
+-rwxr-xr-x 1 root root 22728 Nov  2 07:18 hsh
+-rw-r--r-- 1 root root  1039 Nov  2 06:51 list_functions.c
+-rwxr-xr-x 1 root root  3204 Nov  7 22:24 man_1_simple_shell
+-rw-r--r-- 1 root root  2160 Nov  2 06:52 printf.c
+-rw-r--r-- 1 root root   679 Nov  2 06:52 process_functions.c
+-rw-r--r-- 1 root root  1112 Nov  2 07:06 shell.c
+-rw-r--r-- 1 root root  1998 Nov  2 07:25 string_manipulation.c
+$
+
+.SS Interactive
+
+
+.BI output:
+
+error: No such file or directory
+$
+
+.BI input:
+
+root@root:~/simple_shell$ ./a.out
+$ ls -l
+
+.BI output:
+
+total 52
+
+-rw-r--r-- 1 root root  1637 Nov  2 07:18 alx.h
+-rw-r--r-- 1 root root  1272 Nov  2 07:17 built-in.c
+-rw-r--r-- 1 root root   454 Nov  2 07:19 command_input.c
+-rw-r--r-- 1 root root  3237 Nov  2 06:51 core_functions.c
+-rwxr-xr-x 1 root root 22728 Nov  2 07:18 hsh
+-rw-r--r-- 1 root root  1039 Nov  2 06:51 list_functions.c
+-rwxr-xr-x 1 root root  3204 Nov  7 22:24 man_1_simple_shell
+-rw-r--r-- 1 root root  2160 Nov  2 06:52 printf.c
+-rw-r--r-- 1 root root   679 Nov  2 06:52 process_functions.c
+-rw-r--r-- 1 root root  1112 Nov  2 07:06 shell.c
+-rw-r--r-- 1 root root  1998 Nov  2 07:25 string_manipulation.c
