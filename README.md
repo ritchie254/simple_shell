@@ -1,4 +1,4 @@
-# THE
+# THE GATE
 # Resources
 Read or watch:
 
