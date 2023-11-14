@@ -1,4 +1,4 @@
-# THE GATES OF
+# THE GATES OF SHELL
 # Resources
 Read or watch:
 
