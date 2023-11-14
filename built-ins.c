@@ -1,64 +1,75 @@
-#ifndef ALX_H
-#define ALX_H
+#include "alx.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <sys/stat.h>
-#include <string.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <signal.h>
-#include <stdarg.h>
-#include <limits.h>
-#ifndef BUFF_SIZE
-#define BUFF_SIZE 300
-#endif
 /**
- * struct link - node that contains dirs
- * @dir: directory
- * @next: next node
+ * _myexit - exits shell
+ * @input: command line
+ * Return: 0 on (Success) 1 on (Fail)
  */
-typedef struct link
-{char *dir;
-struct link *next;
-} link_t;
-/**
-* struct formats - structucture for formats
-* @ch: pointer to firts element.
-* @func: The function associated.
-*/
-typedef struct formats
-	{
-		char *ch;
-		int (*func)();
-	} form;
+int _myexit(char *input)
+{
+	char *command = "exit";
+	int j = 0;
+	int length = str_length(input);
 
-char *execute_command(char *argm);
-int puts_char(char c);
-int _printf(const char *format, ...);
-int p_aux_int(long int n, long int);
-int print_str(va_list a);
-int print_char(va_list a);
-int pint(va_list a);
-extern char **environ;
-char *_getenv(const char *var_name);
-char *str_copy(char *destination, char *source);
-char *_strtok(char *string, char *delimeter);
-ssize_t _getline(char **bufline, size_t *size, FILE *std);
-char **splitline(char *cl);
-void signal_ignore(int signals);
-int _myexit(char *input);
-int str_length(char *s);
-int execute_process(char **argm, char **argv, int counter);
-link_t *_add_node_at_end(link_t **head, char *n);
-size_t _print_listint(link_t *h);
-link_t *_link(char *a);
-char *str_cat(char *dir, char *slash, char *arg);
-char *_which(link_t **head, char *argue);
-void release_list(link_t *head);
-char *path_check(char *argm);
-int _myenv(char *input, int counter, char **argv, char **env);
-int get_char(void);
-#endif /* ALX_H header file*/
+	if (length == 4)
+	{
+		while (command[j])
+		{
+			if (command[j] != input[j])
+				return (1);
+			j++;
+		}
+		free(input);
+		return (0);
+	}
+	return (1);
+}
+
+/**
+ * signal_ignore - Ignore input signal Ctrl + C
+ * @signals: signal
+ */
+void signal_ignore(int signals)
+{
+	signal(signals, SIG_IGN);
+	write(STDOUT_FILENO, "\n#cisfun$ ", 11);
+	signal(SIGINT, signal_ignore);
+}
+
+/**
+ * _myenv - environment variables.
+ * @input: command line.
+ * @counter: number of arguments
+ * @argv: entry arguments from main
+ * @env: environ variables
+ * Return: 0 on succes 1 on fails. 127 if env not found
+ */
+int _myenv(char *input, int counter, char **argv, char **env)
+{
+	char *environment = "env";
+	int i = 0;
+	int length = str_length(input);
+
+	if (length == 3)
+	{
+		while (environment[i])
+		{
+			if (environment[i] != input[i])
+				return (1);
+			i++;
+		}
+		if (env)
+		{
+			for (i = 0; env[i] != NULL; i++)
+				_printf("%s\n", env[i]);
+			free(input);
+			return (0);
+		}
+		else
+		{
+			_printf("%s: %d: env: not found\n", argv[0], counter);
+			return (127);
+		}
+	}
+	return (1);
+}

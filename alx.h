@@ -21,8 +21,9 @@
  * @next: next node
  */
 typedef struct link
-{char *dir;
-struct link *next;
+{
+	char *dir;
+	struct link *next;
 } link_t;
 /**
 * struct formats - structucture for formats
@@ -36,18 +37,23 @@ typedef struct formats
 	} form;
 
 char *execute_command(char *argm);
+/* printing */
 int puts_char(char c);
 int _printf(const char *format, ...);
 int p_aux_int(long int n, long int);
 int print_str(va_list a);
 int print_char(va_list a);
 int pint(va_list a);
+
 extern char **environ;
 char *_getenv(const char *var_name);
+
+/* string manipulation */
 char *str_copy(char *destination, char *source);
 char *_strtok(char *string, char *delimeter);
 ssize_t _getline(char **bufline, size_t *size, FILE *std);
 char **splitline(char *cl);
+
 void signal_ignore(int signals);
 int _myexit(char *input);
 int str_length(char *s);
@@ -55,10 +61,15 @@ int execute_process(char **argm, char **argv, int counter);
 link_t *_add_node_at_end(link_t **head, char *n);
 size_t _print_listint(link_t *h);
 link_t *_link(char *a);
+/* string concertination */
 char *str_cat(char *dir, char *slash, char *arg);
 char *_which(link_t **head, char *argue);
+/* frees the memort */
 void release_list(link_t *head);
+/* function to check path */
 char *path_check(char *argm);
+/* environment function */
 int _myenv(char *input, int counter, char **argv, char **env);
+/* function to get input from user */
 int get_char(void);
 #endif /* ALX_H header file*/
