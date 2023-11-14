@@ -1,6 +1,7 @@
 # THE GATES OF SHELL
+
 # Resources
-Read or watch:
+**Read or watch:**
 
 Unix shell
 Thompson shell
